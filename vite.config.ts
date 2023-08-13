@@ -18,6 +18,7 @@ const manifest = defineManifest(({ mode }) => ({
 		'48': 'icons/icon48.png',
 		'128': 'icons/icon128.png',
 	},
+	action: { default_popup: 'index.html' },
 }));
 
 // https://vitejs.dev/config/
