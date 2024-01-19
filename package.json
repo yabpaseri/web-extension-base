@@ -1,0 +1,49 @@
+{
+  "name": "web-extension-base",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "author": "yabpaseri",
+  "description": "web extension base",
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.5",
+    "@mui/material": "^5.15.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "2.0.0-beta.23",
+    "@types/archiver": "^6.0.2",
+    "@types/chrome": "^0.0.258",
+    "@types/node": "20",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "archiver": "^6.0.1",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "prettier": "^3.2.4",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  },
+  "packageManager": "pnpm@8.13.1",
+  "engines": {
+    "pnpm": "^8.13.0"
+  },
+  "volta": {
+    "node": "20.11.0"
+  }
+}
