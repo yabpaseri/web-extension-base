@@ -1,5 +1,5 @@
 import { formatRFC3339 } from 'date-fns';
-import { inspecter, snakeCase } from './stringUtils';
+import { inspecter, snakeCase } from './string-utils';
 
 export class Logger {
 	public static level: LogLevel;

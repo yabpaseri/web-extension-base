@@ -1,4 +1,4 @@
-import inspect, { type Options as InspectOptions } from 'browser-util-inspect';
+// 文字の表現方法(camel,snake,kebab)を扱う
 
 /**
  * 文字列をワードの配列に分割する  \
@@ -60,57 +60,5 @@ export const kebabCase = (value: string): string => {
 	return words.map((w) => w.toLowerCase()).join('-');
 };
 
-/**
- * 正規表現パターンの文字をエスケープします
- * @param value
- * @returns
- */
-export const escapeRegExp = (value: string): string => {
-	return value.replace(REGEXP_ESCAPE_REGEXP, '\\$&');
-};
-
-/**
- * 第1引数の文字列の {0},{1},... を、第2引数以降の値で置き換える  \
- * {}の中の数値は、第2引数で作られる配列のindexと一致する。  \
- * {0} のような文字列をそのまま表示したい場合は、  \
- * {{0}} のように二重にすることでエスケープされる。
- * @param format
- * @param args
- * @example
- */
-export const formatText = (format: string, ...args: unknown[]) => {
-	// formatText("{0} {1}", "{1}", 100); とされたときに
-	// "100 100" ではなく "{1} 100" となるように、2回ループをかけている。
-	const escape = (v: unknown) => `${v}`.replace(FORMAT_TEXT_ESCAPE_REGEXP, '{$&}');
-	for (const [i, v] of args.entries()) {
-		const r = new RegExp(`(?<!\\{)\\{${i}\\}(?!\\})`, 'g');
-		format = format.replace(r, escape(v));
-	}
-	for (let i = 0; i < args.length; i++) {
-		const r = new RegExp(`\\{\\{${i}\\}\\}`, 'g');
-		format = format.replace(r, `{${i}}`);
-	}
-	return format;
-};
-
-/**
- * 引数がリテラルの場合はそのまま文字列に、  \
- * それ以外の場合は inspect 関数に通して返す。
- * @param v
- * @param opt inspect関数に渡すオプションの一部
- * @returns
- */
-export const inspecter = (v: unknown, opt?: { depth?: number | null; showHidden?: boolean }): string => {
-	if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') {
-		return v.toString();
-	}
-	if (v instanceof Error) {
-		return v.stack ?? v.message;
-	}
-	return inspect(v, { ...(opt as InspectOptions) });
-};
-
 const DELIMITER_SPLIT_REGEXP = /[-_\s]/gm;
 const UPPERCASE_SPLIT_REGEXP = /(?<![A-Z])(?=[A-Z])/gm;
-const REGEXP_ESCAPE_REGEXP = /[.*+?^${}()|[\]\\]/g;
-const FORMAT_TEXT_ESCAPE_REGEXP = /(?<!\{)\{([1-9]\d*|0)\}(?!\})/g;
