@@ -1,30 +1,20 @@
-# React + TypeScript + Vite
+# Web Extension Base
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+このプロジェクトは、 `React` + `TypeScript` + `Vite` で構成されています。<br>
+使用するパッケージマネージャは `pnpm` です。
 
-Currently, two official plugins are available:
+## 準備
 
--   [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
--   [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. 以下ファイルの調整
+    - `/package.json` : name,description,version を変更
+    - `/.env` : VITE_APP_TITLE を変更
+2. `pnpm install` を実行
 
-## Expanding the ESLint configuration
+## Tips
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
--   Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-	// other rules...
-	parserOptions: {
-		ecmaVersion: 'latest',
-		sourceType: 'module',
-		project: ['./tsconfig.json', './tsconfig.node.json'],
-		tsconfigRootDir: __dirname,
-	},
-};
-```
-
--   Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
--   Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
--   Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+-   `.eslintrc.json` の `rules > import/no-restricted-paths` に、import範囲を記載している。<br>
+    フォルダの追加時には、この設定に変更が必要かどうかを考える
+-   `tsconfig.json` の `compilerOptions > paths` に、importのエイリアスを記載している。<br>
+    フォルダの追加時には、この設定に変更が必要かどうかを考える
+-   `docs/commit-message.html` として、コミットメッセージに使いそうな gitmoji を列挙している。コピーもしやすくしているので、参考に。
+-   `pnpm verup` で、このパッケージのバージョンが上がるようにしている。そのまま拡張機能のバージョンとしても使用されるので、適宜上げること。
